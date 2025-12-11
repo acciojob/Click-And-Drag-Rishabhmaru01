@@ -1,4 +1,3 @@
-// Your code here.
 const slider = document.querySelector('.items');
 let isDown = false;
 let startX;
@@ -8,7 +7,7 @@ slider.addEventListener('mousedown', (e) => {
   isDown = true;
   slider.classList.add('active');
 
-  startX = e.pageX - slider.offsetLeft;
+  startX = e.clientX;            // FIXED ✓
   scrollLeft = slider.scrollLeft;
 });
 
@@ -27,8 +26,8 @@ slider.addEventListener('mousemove', (e) => {
 
   e.preventDefault();
 
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 2; // Speed factor
+  const x = e.clientX;           // FIXED ✓
+  const walk = (x - startX) * 2; // drag speed
 
   slider.scrollLeft = scrollLeft - walk;
 });
